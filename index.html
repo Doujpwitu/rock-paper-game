@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        console.log("Hello World")
+        // to keep track of the players score
+        let humanScore = 0;
+        let computerScore = 0;
+        // function to randomly returns rock paper scissors
+        // generate a random number between 0 and 3
+        // return rock if 0 
+        // return paper if 1
+        // return scissors if 2
+        function getComputerChoice(){
+
+            let ans = Math.floor(Math.random()*3)
+
+            switch(ans){
+                case 0: 
+                    return 'rock';
+                    break;
+                case 1: 
+                    return 'paper';
+                    break;
+                case 2: 
+                    return 'scissors'
+                    break;
+            }
+        }
+
+        function getHumanChoice(){
+            let choice = prompt('What do you want to play with ..?r/p/s')
+            switch(choice) {
+                case 'r': 
+                    return 'rock';
+                    break;
+                case 'p': 
+                    return 'paper';
+                    break;
+                case 's': 
+                    return 'scissors'
+                    break;
+                default:
+                    return getComputerChoice();
+                    break;
+
+
+            }
+        }
+        // play round
+        // takes human choice and computer choice 
+        // plays a single round 
+        // increments the round winner's 
+        // logs a winner announcement
+        function playRound(humanChoice , computerChoice){
+            if(humanChoice===computerChoice){
+                console.log(`tie ! ${humanChoice} can't beat ${computerChoice}`)
+            }else if(humanChoice==='rock'){
+                if(computerChoice==='scissors'){
+                console.log(`You win ! ${humanChoice} beats ${computerChoice}`)
+                humanScore++;
+                }else{
+                    console.log(`You lost ! ${humanChoice} can't beats ${computerChoice}`)
+                    computerScore++;
+                }
+            }else if (humanChoice==='paper'){
+                if(computerChoice==='rock'){
+                    console.log(`You win ! ${humanChoice} beats ${computerChoice}`)
+                    humanScore++;
+                }else{
+                    console.log(`You lost ! ${humanChoice} can't beats ${computerChoice}`)
+                    computerScore++; 
+                }
+            }else if (humanChoice==='scissors'){
+                if(computerChoice==='paper'){
+                    console.log(`You win ! ${humanChoice} beats ${computerChoice}`)
+                    humanScore++;
+                }else{
+                    console.log(`You lost ! ${humanChoice} can't beats ${computerChoice}`)
+                    computerScore++; 
+                }
+            }
+        }
+
+        function playGame(){
+            
+            playRound(getHumanChoice(),getComputerChoice());
+            playRound(getHumanChoice(),getComputerChoice());
+            playRound(getHumanChoice(),getComputerChoice());
+            playRound(getHumanChoice(),getComputerChoice());
+            playRound(getHumanChoice(),getComputerChoice());
+            showWinner();
+
+
+            
+        }
+
+        function showWinner(){
+            if(humanScore===computerScore){
+                console.log("winner is ...")
+                console.log("HIM!")
+            }
+            else if (humanScore>computerScore){
+                console.log("Winner is ...")
+                console.log("YOU!")
+            }else{
+                console.log("Winner is ...")
+                console.log("ME!")
+            }
+            console.log(`Human score : ${humanScore}, Computer score : ${computerScore}`)
+        }
+
+        
+    </script>
+</body>
+</html>
