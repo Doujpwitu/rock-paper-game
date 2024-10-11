@@ -7,11 +7,38 @@
 </head>
 <body>
     
+
+    <p id="liveScore"></p>
+    <button id="r">ROCK</button>
+    <button id="p">PAPER</button>
+    <button id="s">SCISSORS</button>
+
+    <div id="results"></div>
+
     <script>
-        console.log("Hello World")
+        r_btn = document.querySelector("#r");
+        p_btn = document.querySelector("#p");
+        s_btn = document.querySelector("#s");
+
+        r_btn.addEventListener("click",()=>{
+            playRound('rock',getComputerChoice());
+        })
+        p_btn.addEventListener("click",()=>{
+            playRound('paper',getComputerChoice())
+        })
+        s_btn.addEventListener("click",()=>{
+            playRound('scissors',getComputerChoice())
+        })
+
+        results_div = document.querySelector("#results");
+        liveScore_p = document.querySelector("#liveScore");
+
+
         // to keep track of the players score
         let humanScore = 0;
         let computerScore = 0;
+
+        liveScore_p.textContent = `Your score : ${humanScore} , Computer's score : ${computerScore}`;
         // function to randomly returns rock paper scissors
         // generate a random number between 0 and 3
         // return rock if 0 
@@ -65,59 +92,68 @@
                 if(computerChoice==='scissors'){
                 console.log(`You win ! ${humanChoice} beats ${computerChoice}`)
                 humanScore++;
+                liveScore_p.textContent = `Your score : ${humanScore} , Computer's score : ${computerScore}`;
+
                 }else{
                     console.log(`You lost ! ${humanChoice} can't beats ${computerChoice}`)
                     computerScore++;
+                    liveScore_p.textContent = `Your score : ${humanScore} , Computer's score : ${computerScore}`;
+
                 }
             }else if (humanChoice==='paper'){
                 if(computerChoice==='rock'){
                     console.log(`You win ! ${humanChoice} beats ${computerChoice}`)
                     humanScore++;
+                    liveScore_p.textContent = `Your score : ${humanScore} , Computer's score : ${computerScore}`;
+
                 }else{
                     console.log(`You lost ! ${humanChoice} can't beats ${computerChoice}`)
                     computerScore++; 
+                    liveScore_p.textContent = `Your score : ${humanScore} , Computer's score : ${computerScore}`;
+
                 }
             }else if (humanChoice==='scissors'){
                 if(computerChoice==='paper'){
                     console.log(`You win ! ${humanChoice} beats ${computerChoice}`)
                     humanScore++;
+                    liveScore_p.textContent = `Your score : ${humanScore} , Computer's score : ${computerScore}`;
+
                 }else{
                     console.log(`You lost ! ${humanChoice} can't beats ${computerChoice}`)
                     computerScore++; 
+                    liveScore_p.textContent = `Your score : ${humanScore} , Computer's score : ${computerScore}`;
+
                 }
+            }
+
+            if(humanScore == 5 || computerScore == 5 ){
+            showWinner();
             }
         }
 
-        function playGame(){
-            
-            playRound(getHumanChoice(),getComputerChoice());
-            playRound(getHumanChoice(),getComputerChoice());
-            playRound(getHumanChoice(),getComputerChoice());
-            playRound(getHumanChoice(),getComputerChoice());
-            playRound(getHumanChoice(),getComputerChoice());
-            showWinner();
-
-
-            
-        }
+        
 
         function showWinner(){
             if(humanScore===computerScore){
-                console.log("winner is ...")
-                console.log("HIM!")
+                p = document.createElement("p");
+                p.textContent = "winner is ...\bHIM!"
+                results_div.appendChild(p);
+                console.log('LOGEES')
             }
             else if (humanScore>computerScore){
-                console.log("Winner is ...")
-                console.log("YOU!")
+                p = document.createElement("p");
+                p.textContent = "winner is ...\bYOU!"
+                results_div.appendChild(p);
             }else{
-                console.log("Winner is ...")
-                console.log("ME!")
+                p = document.createElement("p");
+                p.textContent = "winner is ...\bME!"
+                results_div.appendChild(p);
             }
-            console.log(`Human score : ${humanScore}, Computer score : ${computerScore}`)
+            score_p = document.createElement("p");
+            score_p.textContent = `Human score : ${humanScore}, Computer score : ${computerScore}`
+
         }
 
-        playGame();
-        
     </script>
 </body>
 </html>
